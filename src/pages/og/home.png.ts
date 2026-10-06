@@ -1,12 +1,11 @@
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { TITLE, DESC, NAME } from "../../lib/constants.ts";
-import fontUrl from "../../../public/fonts/AzeretMono.ttf?url";
+import fontUrl from "../../../public/fonts/static-font.ttf?url";
 import fs from "node:fs";
 import path from "node:path";
 
 async function loadFont(url: string) {
-  // During build, the font is in the assets folder
   const fontPath = path.resolve("./dist", url.replace(/^\/_astro\//, "_astro/"));
   return fs.readFileSync(fontPath);
 }
@@ -58,7 +57,7 @@ export async function GET() {
     {
       width: 1200,
       height: 630,
-      fonts: [{ name: "Azeret Mono", data: fontData }],
+      fonts: [{ name: "Roboto", data: fontData }],
     }
   );
 

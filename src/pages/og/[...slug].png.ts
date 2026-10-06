@@ -1,7 +1,7 @@
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { getCollection } from "astro:content";
-import fontUrl from "../../../public/fonts/AzeretMono.ttf?url";
+import fontUrl from "../../../public/fonts/static-font.ttf?url";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -49,7 +49,7 @@ export async function GET({ props }: { props: { title: string; description: stri
     {
       width: 1200,
       height: 630,
-      fonts: [{ name: "Azeret Mono", data: fontData }],
+      fonts: [{ name: "Roboto", data: fontData }],
     }
   );
 
