@@ -122,10 +122,13 @@ blockquote {
   background: linear-gradient(to bottom, var(--background), transparent);
 }
 .ul__disc {
-  list-style: none; 
+  list-style: none;
   padding-left: 0;
   position: relative;
-  padding-left: 1.5em; 
+}
+.ul__disc li {
+  position: relative;
+  padding-left: 1.5em;
 }
 .ul__disc li::before {
   content: "";
@@ -134,7 +137,7 @@ blockquote {
   top: 0.5em;
   width: 6px;
   height: 6px;
-  background-color: var(--background-muted);
+  background-color: var(--foreground-muted);
 }
 .a-none {
   text-decoration: none;
