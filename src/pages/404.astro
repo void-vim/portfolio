@@ -1,15 +1,13 @@
 ---
 import Layout from "../layouts/main.astro";
-import Header from "../components/header.astro";
 ---
 
 <Layout>
-  <Header />
   <div>
     <h1>The requested path does not exist in the current scope.</h1>
 
     <a href="/" class="a-none">
-      cd ..
+      cd /home/jae
     </a>
   </div>
 </Layout>
@@ -19,7 +17,6 @@ import Header from "../components/header.astro";
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
-    min-height: 63vh;
   }
 
   h1 {

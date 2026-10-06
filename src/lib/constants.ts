@@ -4,6 +4,8 @@ export const IS_WORK = true;
 export const DOMAIN = "https://jaenudin.vercel.app";
 export const NAME = "Jae.";
 export const TITLE = "Jae. | Polymath Dev";
+export const DESC =
+  "focused on fast, performance-conscious code and thoughtful interaction design.";
 
 const now = new Date(); // Ensure this is defined!
 
