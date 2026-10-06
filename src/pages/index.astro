@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/main.astro";
 import About from "../components/about.astro";
-import Header from "../components/header.astro";
 import Navigation from "../components/navigation.astro";
 import LatestBlog from "../components/latest-blog.astro";
 import Footer from "../components/footer.astro";
@@ -15,9 +14,7 @@ const ogImageUrl = new URL("/og/home.png", DOMAIN);
     <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:image" content={ogImageUrl} />
   </Fragment>
-  <Header />
   <About />
   <Navigation />
-  <LatestBlog />
   <Footer />
 </Layout>

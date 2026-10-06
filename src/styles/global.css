@@ -52,26 +52,6 @@ ol {
   list-style: inside;
   list-style-type: decimal;
 }
-ul {
-  list-style: none; 
-  padding-left: 0;
-}
-
-ul li {
-  position: relative;
-  padding-left: 1.5em; 
-}
-
-ul li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 6px;
-  height: 6px;
-  background-color: #3d3d3d;
-  border-radius: 50%;
-}
 h1,
 h2,
 h3,
@@ -142,6 +122,7 @@ blockquote {
 }
 .ul-none {
   padding: 0 !important;
+  list-style: none !important;
 }
 .ul-none > li {
   list-style-type: none !important;

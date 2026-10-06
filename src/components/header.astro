@@ -1,36 +1,37 @@
-<header>
+<header class="container">
   <nav>
-    <a class="a-none" href="/" title="home">J.</a>
+    <a class="a-none" href="/" title="home">Jae.</a>
     <button id="theme-toggle" aria-label="Toggle theme">
-      <div class="theme-icon"></div>
+      <span id="theme-text">dark</span>
     </button>
   </nav>
 </header>
 
 <script>
-  const THEMES = ["dark", "mid", "light"];
-
   function setupThemeToggle() {
     const btn = document.getElementById("theme-toggle");
-    if (!btn) return;
+    const textEl = document.getElementById("theme-text");
+    if (!btn || !textEl) return;
+
+    const updateDisplay = (theme) => {
+      textEl.textContent = theme;
+    };
+
+    const current = localStorage.getItem("theme") || "dark";
+    updateDisplay(current);
 
     btn.addEventListener("click", () => {
-      const current =
-        localStorage.getItem("theme") || "dark";
+      const current = localStorage.getItem("theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
 
-      const next =
-        THEMES[(THEMES.indexOf(current) + 1) % THEMES.length];
+      document.documentElement.classList.remove("light-mode");
 
-      document.documentElement.classList.remove(
-        "mid-mode",
-        "light-mode"
-      );
-
-      if (next !== "dark") {
-        document.documentElement.classList.add(`${next}-mode`);
+      if (next === "light") {
+        document.documentElement.classList.add("light-mode");
       }
 
       localStorage.setItem("theme", next);
+      updateDisplay(next);
     });
   }
 
@@ -55,76 +56,15 @@
     border: none;
     padding: 10px;
     cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--foreground-muted);
   }
 
-  .theme-icon {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    position: relative;
-
-    border: 2px solid var(--foreground-muted);
-    background: transparent;
-
-    transition:
-      border-color 0.4s ease,
-      transform 0.4s ease;
+  #theme-toggle:hover {
+    color: var(--primary);
   }
-
-  .theme-icon::before,
-  .theme-icon::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.45s ease;
-  }
-
-  /* MID MODE GRAPHIC */
-  .theme-icon::before {
-    background:
-      radial-gradient(
-        circle at 50% 15%,
-        #f6f6f6 0%,
-        #f6f6f6 55%,
-        transparent 56%
-      ),
-      radial-gradient(
-        circle at 50% 80%,
-        #1f1f1f 0%,
-        #1f1f1f 65%,
-        transparent 66%
-      ),
-      linear-gradient(
-        180deg,
-        #1f1f1f 0%,
-        #f6f6f6 100%
-      );
-  }
-
-  .theme-icon::after {
-    background: transparent;
-  }
-
-  :root.mid-mode .theme-icon {
-    border-color: var(--foreground);
-  }
-
-  :root.mid-mode .theme-icon::before {
-    opacity: 1;
-  }
-
-  :root.light-mode .theme-icon {
-    border-color: var(--foreground);
-    transform: scale(1.1);
-  }
-
-  #theme-toggle:hover .theme-icon {
-    border-color: var(--primary);
+  #theme-text {
+    text-transform: uppercase;
   }
 </style>

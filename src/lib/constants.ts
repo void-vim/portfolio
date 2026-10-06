@@ -2,10 +2,8 @@ import { getCollection } from "astro:content";
 
 export const IS_WORK = true;
 export const DOMAIN = "https://jaenudin.vercel.app";
-export const NAME = "J.";
-export const TITLE = "J. | Polymath Dev";
-export const DESC =
-  "focused on fast, performance-conscious code and thoughtful interaction design.";
+export const NAME = "Jae.";
+export const TITLE = "Jae. | Polymath Dev";
 
 const now = new Date(); // Ensure this is defined!
 
@@ -23,8 +21,8 @@ export const BLOG = (await getCollection("blog"))
 
 export const CONNECT = [
   {
-    label: "github/jee-vim",
-    value: "https://github.com/jee-vim"
+    label: "github/void-vim",
+    value: "https://github.com/void-vim"
   },
   {
     label: "email",
@@ -37,8 +35,15 @@ export const PROJECT = [
     tag: "Neovim",
     title: "Nvim",
     description: "Neovim configuration focus on fast and minimalist",
-    website: "https://github.com/Jee-vim/nvim/",
+    website: "https://github.com/void-vim/nvim/",
     year: 2023,
+  },
+  {
+    tag: "Web",
+    title: "IFG Life",
+    description: "Insurrance Company part of Danantara Indonesia",
+    website: "https://ifg-life.id/",
+    year: 2024,
   },
   {
     tag: "Web",
@@ -64,16 +69,37 @@ export const PROJECT = [
   {
     tag: "Linux",
     title: "Dotfiles Nix",
-    description: "Nixos Configuration with hyprland and more",
-    website: "https://github.com/Jee-vim/dotfiles-nix/",
+    description: "My Nixos Configuration",
+    website: "https://github.com/void-vim/dotfiles-nix/",
+    year: 2025,
+  },
+  {
+    tag: "Web",
+    title: "Book Archive",
+    description: "Internal Product for managing book for layouter",
+    website: "https://www.kemendikdasmen.go.id/",
     year: 2025,
   },
   {
     tag: "CLI",
     title: "Jmf",
     description: "Simple tool for mass manipulation file at once using Zig",
-    website: "https://github.com/Jee-vim/jmf/",
+    website: "https://github.com/void-vim/jmf/",
     year: 2025,
+  },
+  {
+    tag: "CLI",
+    title: "Vamoslabs",
+    description: "Tracker on-chain data",
+    website: "https://github.com/void-vim",
+    year: 2026,
+  },
+  {
+    tag: "CLI",
+    title: "Baseline",
+    description: "One-command baseline for a fresh Linux box (Ubuntu/Debian or RHEL/Fedora). Splits cleanly into two layers:",
+    website: "https://github.com/void-vim/baseline",
+    year: 2026,
   },
   {
     tag: "Web",
@@ -86,7 +112,14 @@ export const PROJECT = [
     tag: "Chrome Extension",
     title: "Focus Shield",
     description: "Hide distract element on the web",
-    website: "https://github.com/Jee-vim/focus-extension/",
+    website: "https://github.com/void-vim/focus-extension/",
+    year: 2026,
+  },
+  {
+    tag: "Web",
+    title: "AkiraDATA DMS",
+    description: "Enterprise DMS",
+    website: "https://akiradata.co.id/",
     year: 2026,
   },
   {
@@ -107,7 +140,7 @@ export const PROJECT = [
     tag: "CLI",
     title: "Clipper",
     description: "Video processing CLI tool for creating vertical (9:16) clips from youtube url or local video",
-    website: "https://github.com/Jee-vim/clipper/",
+    website: "https://github.com/void-vim/clipper/",
     year: 2026,
   },
   {
@@ -121,7 +154,7 @@ export const PROJECT = [
     tag: "CLI",
     title: "Syncro",
     description: "Discord Scheduler.",
-    website: "https://github.com/Jee-vim/syncro/",
+    website: "https://github.com/void-vim/syncro/",
     year: 2026,
   },
 ];

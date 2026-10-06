@@ -1,27 +1,19 @@
 :root {
-  --background: #1f1f1f;
-  --background-muted: #3d3d3d;
+  --background: #121212;
+  --background-muted: #282828;
 
-  --foreground: #f6f6f6;
-  --foreground-muted: #888888;
+  --foreground: #fbf1c7;
+  --foreground-muted: #a89984;
 
-  --primary: #689d6a;
+  --primary: #fbf1c7;
 }
-:root.mid-mode {
-  --background: #3a3834;
-  --background-muted: #4d4a44;
 
-  --foreground: #f1ede6;
-  --foreground-muted: #c2bdb4;
-
-  --primary: #b57614;
-}
 :root.light-mode {
-  --background: #ebdbb2;
-  --background-muted: #928374;
+  --background: #fbf1c7;
+  --background-muted: #ebdbb2;
 
-  --foreground: #1d2021;
-  --foreground-muted: #3c3836;
+  --foreground: #0f1010;
+  --foreground-muted: #7c6f64;
 
-  --primary: #fabd2f;
+  --primary: #0f1010;
 }

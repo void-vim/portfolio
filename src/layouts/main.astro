@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import ThemeScript from "../components/theme-script.astro"
 import Cursor from "../components/cursor.astro"
+import Header from "../components/header.astro";
 import "../styles/global.css";
 import { DOMAIN, NAME, TITLE, DESC } from "../lib/constants.ts";
 ---
@@ -35,11 +36,11 @@ import { DOMAIN, NAME, TITLE, DESC } from "../lib/constants.ts";
       {
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "J.",
+        "name": "Jae",
         "jobTitle": "Polymath Dev",
         "url": "https://jaenudin.vercel.app",
         "sameAs": [
-          "https://github.com/jee-vim"
+          "https://github.com/void-vim"
         ]
       }
     </script>
@@ -47,9 +48,8 @@ import { DOMAIN, NAME, TITLE, DESC } from "../lib/constants.ts";
   </head>
 
   <body>
-    <div class="overlay"></div>
-
     <Cursor />
+    <Header />
     <main class="container">
       <slot />
     </main>
@@ -60,12 +60,13 @@ import { DOMAIN, NAME, TITLE, DESC } from "../lib/constants.ts";
   body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     min-height: 100vh;
   }
   main {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2.5rem;
+    flex: 1;
   }
 </style>

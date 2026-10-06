@@ -1,45 +1,68 @@
 ---
-const DATA = ["connect", "project", "blog", "uses"];
+import { Network, FolderGit2, Feather, Cpu } from '@lucide/astro';
+
+const DATA = [
+  { 
+    name: "connect", 
+    icon: Network, 
+    description: "Reach Out" 
+  },
+  { 
+    name: "project", 
+    icon: FolderGit2, 
+    description: "Recent Builds" 
+  },
+  { 
+    name: "blog", 
+    icon: Feather, 
+    description: "Read my thoughts" 
+  },
+  { 
+    name: "uses", 
+    icon: Cpu, 
+    description: "Gear Setup" 
+  }
+];
 ---
-<div>
-  {DATA.map((item, id) => {
-    return (
-      <p> 
-        <a class="binary-link a-none" data-text={item} href={`/${item}`} title={item}>
-          {item}
-        </a> 
-        <span>{id !== DATA.length - 1 && "/"}</span> 
-      </p> 
-    );
-  })}
-</div>
-
-<script>
-  import { binaryReveal } from "../lib/utils"; 
-  const links = document.querySelectorAll(".binary-link");
-  
-  links.forEach((link, index) => {
-    const htmlLink = link as HTMLElement;
-    const targetText = htmlLink.getAttribute("data-text") || htmlLink.innerText;
-
-    const staggerDelay = index; 
-
-    setTimeout(() => {
-      binaryReveal(htmlLink, targetText, 2000);
-    }, staggerDelay);
-  });
-</script>
+<ul class="ul-none">
+  {DATA.map(({ name, icon: Ico, description }) => (
+    <li>
+      <a class="a-none" href={`/${name}`} title={description}>
+        <Ico size={120} strokeWidth={1} />
+        <span>
+        <p class="name">{name}</p>
+        <p class="desc">{description}</p>
+        </span>
+      </a>
+    </li>
+  ))}
+</ul>
 
 <style>
-  div {
+  ul {
     display: flex;
-    width: fit-content;
-    padding: 0;
+    justify-content: space-between;
+    gap: 3rem;
   }
-  p a {
-    text-transform: capitalize;
+  a {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
   }
-  p span {
-    padding-right: 1rem;
+  .name {
+    margin: 0;
+  }
+  .desc {
+    margin: 0;
+    font-size: 0.85rem;
+    text-transform: none;
+    color: var(--foreground-muted);
+  }
+  li :global(svg *) {
+    stroke-width: 2px;
+    vector-effect: non-scaling-stroke;
   }
 </style>

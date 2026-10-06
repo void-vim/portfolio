@@ -18,7 +18,7 @@ const sortedYears = Object.entries(projectsByYear).sort(
 );
 
 const TITLE = "Some Things I've Built"
-const DESC = "A collection of personal projects, internal systems, and client work. Focused on building functional digital solutions that turn ambitious ideas into reality."
+const DESC = "A collection of personal projects, internal systems, and client work."
 const URL = `${DOMAIN}/project`
 ---
 
@@ -55,13 +55,17 @@ const URL = `${DOMAIN}/project`
           {projects.map((project) => (
             <li class="project__item">
               <div class="content">
-                <h3>{project.title}</h3>
-                {project.website && (
-                  <a href={project.website} target="_blank">
-                    <Link size={13} />
-                    {project.website.replace("https://", "")}
-                  </a>
+                {project.website ? (
+                  <h3>
+                    <a href={project.website} target="_blank">
+                      {project.title}
+                      <Link size={13} />
+                    </a>
+                  </h3>
+                ) : (
+                  <h3>{project.title}</h3>
                 )}
+                {project.description && <p>{project.description}</p>}
               </div>
             </li>
           ))}
@@ -72,7 +76,6 @@ const URL = `${DOMAIN}/project`
 </Layout>
 
 <style>
-
   header h1 {
     font-size: 1.5rem;
   }
@@ -120,21 +123,22 @@ const URL = `${DOMAIN}/project`
     font-weight: 500;
   }
 
-  .content a {
+  .content h3 a {
     width: fit-content;
-    padding: 0.35rem 0.6rem;
-    border: 1px solid var(--background-muted);
-    border-radius: 6px;
-    color: var(--foreground-muted);
+    color: var(--foreground);
     text-decoration: none;
-    font-size: 14px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 4px;
   }
 
-  .content a:hover {
-    border-color: var(--foreground-muted);
-    color: var(--foreground);
+  .content h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .content p {
+    font-size: 14px;
+    color: var(--foreground-muted);
+    margin: 0;
   }
 </style>
