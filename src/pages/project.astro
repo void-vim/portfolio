@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/second.astro";
 import { PROJECT,DOMAIN } from "../lib/constants.ts";
-import { Link } from "@lucide/astro";
 
 const projectsByYear = PROJECT.reduce(
   (acc: Record<number, any[]>, project) => {

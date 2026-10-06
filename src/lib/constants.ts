@@ -1,6 +1,5 @@
 import { getCollection } from "astro:content";
 
-export const IS_WORK = true;
 export const DOMAIN = "https://jaenudin.vercel.app";
 export const NAME = "Jae.";
 export const TITLE = "Jae. | Polymath Dev";
