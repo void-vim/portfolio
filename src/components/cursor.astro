@@ -13,7 +13,6 @@
     user-select: none;
     z-index: 9999;
     will-change: transform;
-    transition: scale 0.3s ease-out;
   }
 
   .hidden {
@@ -42,20 +41,44 @@
       cursorP.x += (mouse.x - cursorP.x) * 0.15;
       cursorP.y += (mouse.y - cursorP.y) * 0.15;
 
-      cursor.style.transform = `translate3d(${cursorP.x - 8}px, ${cursorP.y - 8}px, 0)`;
+      currentScale += (targetScale - currentScale) * 0.15;
+
+      cursor.style.transform = `translate3d(${cursorP.x - 8}px, ${cursorP.y - 8}px, 0) scale(${currentScale})`;
 
       requestAnimationFrame(tick);
     };
 
+    let moveTimer: number | null = null;
+    const MOVING_SCALE = 1.8;
+    const RESTING_SCALE = 1;
+    let targetScale = RESTING_SCALE;
+    let currentScale = RESTING_SCALE;
+
+    const setScaleTarget = (scale: number) => {
+      targetScale = scale;
+    };
+
+    const handleMove = () => {
+      setScaleTarget(MOVING_SCALE);
+
+      if (moveTimer) window.clearTimeout(moveTimer);
+      moveTimer = window.setTimeout(() => {
+        setScaleTarget(RESTING_SCALE);
+      }, 200);
+    };
+
     const handleHover = () => {
-      cursor.style.scale = "0.5";
+      setScaleTarget(targetScale * 0.5);
     };
 
     const handleUnhover = () => {
-      cursor.style.scale = "1";
+      setScaleTarget(currentScale / 0.5);
     };
 
-    window.addEventListener("mousemove", updateMouse);
+    window.addEventListener("mousemove", (e) => {
+      updateMouse(e);
+      handleMove();
+    });
     
     document.addEventListener("mouseover", (e) => {
       if ((e.target as HTMLElement)?.closest(".link")) handleHover();

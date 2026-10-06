@@ -46,8 +46,7 @@ const URL = `${DOMAIN}/blog`
           <div class="meta">
             {item.data.tags.map((tag, i) => (
               <span class="tag">
-                {tag}
-                {i < item.data.tags.length - 1 && ", "}
+                {tag}{i < item.data.tags.length - 1 && ", "}
               </span>
             ))}
           </div>
