@@ -51,7 +51,7 @@ const URL = `${DOMAIN}/project`
       <li class="year__block" id={`year-${year}`}>
         <h2>#{year}</h2>
 
-        <ul class="project__list">
+        <ul class="ul__disc">
           {projects.map((project) => (
             <li class="project__item">
               <div class="content">
@@ -100,12 +100,6 @@ const URL = `${DOMAIN}/project`
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 1rem;
-  }
-
-  .project__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
   }
 
   .project__item {

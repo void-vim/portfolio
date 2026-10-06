@@ -37,7 +37,7 @@ const URL = `${DOMAIN}/blog`
     <p>{DESC}</p>
   </header>
 
-  <ul class="blog__root">
+  <ul class="ul__disc">
     {BLOG.map((item) => (
     <li class="blog__item" id={item.slug}>
         <a href={`/blog/${item.slug}`} class="blog__link">
@@ -61,32 +61,6 @@ const URL = `${DOMAIN}/blog`
 
 header h1 {
   font-size: 1.5rem;
-}
-
-ul {
-  list-style: none; 
-  padding-left: 0;
-}
-
-ul li {
-  position: relative;
-  padding-left: 1.5em; 
-}
-
-ul li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 6px;
-  height: 6px;
-  background-color: #3d3d3d;
-  border-radius: 50%;
-}
-
-.blog__root {
-  list-style: none;
-  padding: 0;
 }
 
 .blog__item {
