@@ -6,24 +6,10 @@ import { DESC } from "../lib/constants.ts"
   <p><span>Now</span> - {DESC}</p>
 </div>
 
-<script>
-  import { binaryReveal } from "../lib/utils"; 
-
-  const heading = document.getElementById("glitch");
-  
-  if (heading) {
-    binaryReveal( heading, "OXINOS");
-  }
-</script>
-
 <style>
   div {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  }
-  div>p:first-child span{
-    font-family: "secondary";
-    font-style: italic
   }
 </style>

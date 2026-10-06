@@ -6,12 +6,6 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "secondary";
-  src: url("/fonts/Merriweather.ttf") format("truetype");
-  font-style: normal;
-  font-display: swap;
-}
 
 *,
 ::after,
