@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import ThemeScript from "../components/theme-script.astro"
 import Cursor from "../components/cursor.astro"
 import Header from "../components/header.astro";
+import Banner from "../components/banner.astro";
 import "../styles/global.css";
 import { DOMAIN, NAME, TITLE, DESC } from "../lib/constants.ts";
 ---
@@ -50,6 +51,7 @@ import { DOMAIN, NAME, TITLE, DESC } from "../lib/constants.ts";
   <body>
     <Cursor />
     <Header />
+    <Banner />
     <main class="container">
       <slot />
     </main>

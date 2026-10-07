@@ -1,0 +1,96 @@
+<a href="mailto:jee.nvim@gmail.com" class="banner" id="opportunity-banner">
+  <div class="banner__track" id="banner-track">
+    <span class="banner__text" id="banner-text">Available for new opportunities</span>
+  </div>
+</a>
+
+<script is:inline>
+  (function() {
+    function initBanner() {
+      const track = document.getElementById('banner-track');
+      const text = document.getElementById('banner-text');
+      const banner = document.getElementById('opportunity-banner');
+      if (!track || !text || !banner) return;
+
+      if (track.dataset.initialized === 'true') return;
+      track.dataset.initialized = 'true';
+
+      const containerWidth = track.parentElement.offsetWidth;
+      const unitWidth = text.offsetWidth + parseFloat(getComputedStyle(text).paddingRight);
+      const needed = Math.ceil(containerWidth / unitWidth) + 5;
+
+      let html = text.outerHTML;
+      for (let i = 1; i < needed; i++) {
+        html += text.outerHTML;
+      }
+      track.innerHTML = html;
+
+      const speed = 30;
+      const distance = unitWidth;
+      const duration = (distance / speed);
+      track.style.animationDuration = duration + 's';
+    }
+
+    function setupHover() {
+      const track = document.getElementById('banner-track');
+      const banner = document.getElementById('opportunity-banner');
+      if (!track || !banner) return;
+
+      banner.addEventListener('mouseenter', () => {
+        track.style.animationPlayState = 'paused';
+      });
+      banner.addEventListener('mouseleave', () => {
+        track.style.animationPlayState = 'running';
+      });
+    }
+
+    initBanner();
+    setupHover();
+
+    document.addEventListener('astro:page-load', () => {
+      initBanner();
+      setupHover();
+    });
+  })();
+</script>
+
+<style>
+  .banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid var(--foreground-muted, #666);
+    background: var(--background, #1f1f1f);
+    color: var(--foreground, #eee);
+    font-size: 0.75rem;
+    padding: 0.4rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 10;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .banner:hover {
+    color: var(--foreground, #eee);
+  }
+  .banner__track {
+    display: inline-flex;
+    animation: banner-scroll linear infinite;
+    will-change: transform;
+  }
+  .banner__text {
+    flex-shrink: 0;
+    padding-right: 2rem;
+  }
+  @keyframes banner-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .banner__track {
+      animation-duration: 60s;
+    }
+  }
+</style>
