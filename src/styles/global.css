@@ -203,7 +203,6 @@ blockquote {
 
   background: var(--background);
   border: 1px solid var(--foreground-muted);
-  border-radius: 6px;
 
   color: var(--foreground);
 
