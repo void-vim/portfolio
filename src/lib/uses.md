@@ -1,6 +1,5 @@
 ## System & Desktop
 - **OS**: [NixOS](https://nixos.org/) Reproducible builds are a life saver.
-- **WM**: [Hyprland](https://hypr.land/)
 - **Theme**: [Gruvbox](https://github.com/morhetz/gruvbox) 
 - **Dotfiles**: [Dotfiles](https://github.com/Jee-vim/dotfiles-nix)
 - **Terminal**: [Kitty](https://sw.kovidgoyal.net/kitty/)
