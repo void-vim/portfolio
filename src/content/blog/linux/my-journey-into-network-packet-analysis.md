@@ -12,7 +12,6 @@ For a long time, the network stack felt like an opaque boundary. Applications se
 
 That changed when I stopped relying entirely on application logs and started looking directly at the wire using `tcpdump`.
 
----
 
 ### Step One: Overcoming the Firehose
 
@@ -27,7 +26,6 @@ sudo tcpdump -i eth0 -nn -s0 -w capture.pcap port 443
 
 Using `-nn` prevents `tcpdump` from wasting cycles on reverse DNS and port-name lookups, keeping the output strictly numeric and clean. Setting `-s0` ensures the full packet payload is captured rather than truncating at the default snapshot length.
 
----
 
 ### Step Two: Watching the Handshake Live
 
@@ -42,7 +40,6 @@ sudo tcpdump -i eth0 -nn 'tcp[tcpflags] & (tcp-syn) != 0'
 
 Seeing the SYN, SYN-ACK, and ACK sequence explicitly confirmed the state machine described in documentation actually operating on my own machine. Watching sequence and acknowledgement numbers increment gave me a tangible sense of how reliable transport works over an unreliable medium, replacing theory with direct observation.
 
----
 
 ### Step Three: Inspecting Payloads and Flags
 
@@ -57,7 +54,6 @@ sudo tcpdump -i eth0 -nn -A host 192.168.1.50 and port 80
 
 This allowed me to see unencrypted HTTP traffic fly past, revealing user-agent strings, request paths, and response headers. It turned out that understanding protocol behavior becomes infinitely easier when you can read the literal bytes exchanged between client and server.
 
----
 
 ### Step Four: Leveling Up With tshark
 
@@ -72,7 +68,6 @@ tshark -r capture.pcap -Y "tls.handshake.extensions_server_name" -T fields -e ip
 
 This command parses the capture offline, strips away the wrapper, and prints the source IP alongside the Server Name Indication from the TLS handshake. Suddenly, I could audit outbound connections from a newly installed utility without guessing what third-party endpoints it was phoning home to.
 
----
 
 ### What The Wire Taught Me
 
