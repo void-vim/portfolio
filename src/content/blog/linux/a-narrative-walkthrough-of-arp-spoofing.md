@@ -55,7 +55,6 @@ ip addr
 
 Our MAC address is `1c:4d:70:29:10:b7`, and the target IP is identified as `10.0.0.42`.
 
----
 
 ## Poisoning the Cache
 
@@ -83,7 +82,6 @@ When the ARP poisoning takes effect, the victim's device accepts the fraudulent 
 
 Traffic intended for the external network now routes directly through our machine.
 
----
 
 ## Intercepting the Stream
 
