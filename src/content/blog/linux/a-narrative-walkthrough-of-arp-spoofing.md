@@ -1,6 +1,6 @@
 ---
 title: A Narrative Walkthrough of ARP Spoofing
-description: Networks operate on trust. When a device wants to talk to another device on the same local network, it relies on the Address Resolution Protocol (ARP).
+description: How local network trust can be intercepted through ARP spoofing
 date: 2026-10-11
 status: PUBLISH
 tags:
