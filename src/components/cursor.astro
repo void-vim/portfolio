@@ -7,7 +7,7 @@
     left: 0;
     width: 16px;
     height: 16px;
-    background-color: var(--foreground);
+    background-color: var(--foreground, #ffffff); 
     mix-blend-mode: difference;
     pointer-events: none;
     user-select: none;
@@ -21,40 +21,39 @@
 </style>
 
 <script>
+  let cursorAnimationId = null;
+  let mouseMoveHandler = null;
+  let mouseOverHandler = null;
+  let mouseOutHandler = null;
+
   const initCursor = () => {
     const cursor = document.getElementById("custom-cursor");
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
 
-    if (!isDesktop || !cursor) return;
+    if (!isDesktop || !cursor) {
+      if (cursor) cursor.classList.add("hidden");
+      return;
+    }
 
     cursor.classList.remove("hidden");
 
-    let mouse = { x: 0, y: 0 };
-    let cursorP = { x: 0, y: 0 };
+    // Clean up previous listeners/animations if re-initializing
+    if (cursorAnimationId) cancelAnimationFrame(cursorAnimationId);
+    if (mouseMoveHandler) window.removeEventListener("mousemove", mouseMoveHandler);
+    if (mouseOverHandler) document.removeEventListener("mouseover", mouseOverHandler);
+    if (mouseOutHandler) document.removeEventListener("mouseout", mouseOutHandler);
 
-    const updateMouse = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
+    // Initialize to center of screen to avoid 0,0 flashes
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    let cursorP = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
-    const tick = () => {
-      cursorP.x += (mouse.x - cursorP.x) * 0.15;
-      cursorP.y += (mouse.y - cursorP.y) * 0.15;
-
-      currentScale += (targetScale - currentScale) * 0.15;
-
-      cursor.style.transform = `translate3d(${cursorP.x - 8}px, ${cursorP.y - 8}px, 0) scale(${currentScale})`;
-
-      requestAnimationFrame(tick);
-    };
-
-    let moveTimer: number | null = null;
+    let moveTimer = null;
     const MOVING_SCALE = 1.8;
     const RESTING_SCALE = 1;
     let targetScale = RESTING_SCALE;
     let currentScale = RESTING_SCALE;
 
-    const setScaleTarget = (scale: number) => {
+    const setScaleTarget = (scale) => {
       targetScale = scale;
     };
 
@@ -67,30 +66,48 @@
       }, 200);
     };
 
-    const handleHover = () => {
-      setScaleTarget(targetScale * 0.5);
-    };
-
-    const handleUnhover = () => {
-      setScaleTarget(currentScale / 0.5);
-    };
-
-    window.addEventListener("mousemove", (e) => {
-      updateMouse(e);
+    mouseMoveHandler = (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
       handleMove();
-    });
-    
-    document.addEventListener("mouseover", (e) => {
-      if ((e.target as HTMLElement)?.closest(".link")) handleHover();
-    });
+    };
 
-    document.addEventListener("mouseout", (e) => {
-      if ((e.target as HTMLElement)?.closest(".link")) handleUnhover();
-    });
+    mouseOverHandler = (e) => {
+      if (e.target?.closest(".link")) {
+        setScaleTarget(targetScale * 0.5);
+      }
+    };
 
-    requestAnimationFrame(tick);
+    mouseOutHandler = (e) => {
+      if (e.target?.closest(".link")) {
+        setScaleTarget(currentScale / 0.5);
+      }
+    };
+
+    window.addEventListener("mousemove", mouseMoveHandler);
+    document.addEventListener("mouseover", mouseOverHandler);
+    document.addEventListener("mouseout", mouseOutHandler);
+
+    const tick = () => {
+      cursorP.x += (mouse.x - cursorP.x) * 0.15;
+      cursorP.y += (mouse.y - cursorP.y) * 0.15;
+
+      currentScale += (targetScale - currentScale) * 0.15;
+
+      cursor.style.transform = `translate3d(${cursorP.x - 8}px, ${cursorP.y - 8}px, 0) scale(${currentScale})`;
+
+      cursorAnimationId = requestAnimationFrame(tick);
+    };
+
+    cursorAnimationId = requestAnimationFrame(tick);
   };
 
-  initCursor();
+  // Run on load and after Astro page transitions
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCursor);
+  } else {
+    initCursor();
+  }
+
   document.addEventListener("astro:after-swap", initCursor);
 </script>
